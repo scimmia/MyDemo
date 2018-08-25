@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.scimmia.mydemo"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.squareup.okhttp3:okhttp:3.11.0'
+    compile 'org.apache.commons:commons-lang3:3.5'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation "android.arch.work:work-runtime:1.0.0-alpha03" // use -ktx for Kotlin
+    compile 'com.xdandroid:hellodaemon:+'
+    // optional - Firebase JobDispatcher support
+    implementation "android.arch.work:work-firebase:1.0.0-alpha03"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:0.5'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
+    compile files('libs/BaiduLBS_Android.jar')
+
+}
